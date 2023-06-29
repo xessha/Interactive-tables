@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title>Интерактивные таблицы</title>
+ </head>
+ <body>  
+  <table width="100%" border="1" cellspacing="0" cellpadding="4">
+   <caption>Таблица 3.2.</caption>  
+   <tr> 
+    <th>&nbsp;</th><th>К</th>
+    <th>З</th><th>С</th><th>Ч</th>
+   </tr>
+   <tr> 
+    <td></td>
+	<td><span class="dynamic"><img src="К.png"><img src="З.png"><img src="С.png"><img src="Ч.png"></span></td>
+	<td><span class="dynamic"><img src="К.png"><img src="З.png"><img src="С.png"><img src="Ч.png"></span></td>
+	<td><span class="dynamic"><img src="К.png"><img src="З.png"><img src="С.png"><img src="Ч.png"></span></td>
+	<td><span class="dynamic"><img src="К.png"><img src="З.png"><img src="С.png"><img src="Ч.png"></span></td>
+   </tr>
+   <tr> 
+    <td></td>
+	<td><span class="dynamic"><img src="К.png"><img src="З.png"><img src="С.png"><img src="Ч.png"></span></td>
+	<td><span class="dynamic"><img src="К.png"><img src="З.png"><img src="С.png"><img src="Ч.png"></span></td>
+	<td><span class="dynamic"><img src="К.png"><img src="З.png"><img src="С.png"><img src="Ч.png"></span></td>
+	<td><span class="dynamic"><img src="К.png"><img src="З.png"><img src="С.png"><img src="Ч.png"></span></td>
+   </tr>
+   <tr> 
+    <td></td>
+	<td><span class="dynamic"><img src="К.png"><img src="З.png"><img src="С.png"><img src="Ч.png"></span></td>
+	<td><span class="dynamic"><img src="К.png"><img src="З.png"><img src="С.png"><img src="Ч.png"></span></td>
+	<td><span class="dynamic"><img src="К.png"><img src="З.png"><img src="С.png"><img src="Ч.png"></span></td>
+	<td><span class="dynamic"><img src="К.png"><img src="З.png"><img src="С.png"><img src="Ч.png"></span></td>
+   </tr>
+  <tr> 
+    <td></td>
+	<td><span class="dynamic"><img src="К.png"><img src="З.png"><img src="С.png"><img src="Ч.png"></span></td>
+	<td><span class="dynamic"><img src="К.png"><img src="З.png"><img src="С.png"><img src="Ч.png"></span></td>
+	<td><span class="dynamic"><img src="К.png"><img src="З.png"><img src="С.png"><img src="Ч.png"></span></td>
+	<td><span class="dynamic"><img src="К.png"><img src="З.png"><img src="С.png"><img src="Ч.png"></span></td>
+   </tr>
+  </table>
+ </body>
+</html>
+
+
+<script>
+
+var elems = document.getElementsByClassName("dynamic"),
+ trampInput = document.createElement("input");
+ istdselect = false;
+            trampInput.type = "text";
+            trampInput.style.width = "128px";
+            trampInput.addEventListener("blur", function() {
+				let innerText = trampInput.value;
+				innerText = innerText.replace( /К/gi, "<img src=\"К.png\">" );
+				innerText = innerText.replace( /З/gi, "<img src=\"З.png\">" );
+				innerText = innerText.replace( /С/gi, "<img src=\"С.png\">" );
+                innerText = innerText.replace( /Ч/gi, "<img src=\"Ч.png\">" );					
+				trampInput.parentNode.innerHTML = innerText;
+				istdselect = false;	
+			}
+            , false);
+for (var i=0; i<elems.length; i++) {
+    var el = elems[i];
+    el.addEventListener("click", function() {
+        if (istdselect) return;
+		istdselect = true;
+		let innerText = this.innerHTML;
+		innerText = innerText.replace( /<img src=\"К.png\">/gi, "К" );
+		innerText = innerText.replace( /<img src=\"З.png\">/gi, "З" );
+		innerText = innerText.replace( /<img src=\"С.png\">/gi, "С" );
+		innerText = innerText.replace( /<img src=\"Ч.png\">/gi, "Ч" );
+        trampInput.value = innerText;
+        this.innerHTML = "";
+        this.appendChild(trampInput);
+        trampInput.focus();
+        trampInput.select()
+		}.bind(el), false);
+	};
+	
+</script>
